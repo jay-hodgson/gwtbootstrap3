@@ -21,5 +21,4 @@
 <module>
     <inherits name="org.gwtbootstrap3.client.NoThemeResources"/>
 	<stylesheet src="css/bootstrap-paper-theme.min.css"/>
-    <stylesheet src="css/font-awesome-4.3.0.min.cache.css"/>
 </module>
