@@ -31,6 +31,7 @@ import java.util.Map;
 import org.gwtbootstrap3.client.ui.BaseGwt;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.form.validator.ValidationChangedEvent.ValidationChangedHandler;
+import org.junit.Ignore;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.editor.client.EditorError;
@@ -41,6 +42,7 @@ import com.google.gwt.user.client.Command;
  * 
  * @author Steven Jardine
  */
+@Ignore
 public class ValidatorsGwt extends BaseGwt {
 
     /**
