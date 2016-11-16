@@ -827,7 +827,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
 
             @Override
             public void onAttachOrDetach(final AttachEvent event) {
-                init();
+                if (event.isAttached()) {
+                    init();
+                }
             }
         });
     }
@@ -883,5 +885,5 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
             padding : padding
         };
     }-*/;
-
+    
 }
