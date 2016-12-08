@@ -829,6 +829,9 @@ public abstract class AbstractTooltip implements IsWidget, HasWidgets, HasOneWid
             public void onAttachOrDetach(final AttachEvent event) {
                 if (event.isAttached()) {
                     init();
+                } else {
+                // on detach, hide
+                    call(HIDE);
                 }
             }
         });
