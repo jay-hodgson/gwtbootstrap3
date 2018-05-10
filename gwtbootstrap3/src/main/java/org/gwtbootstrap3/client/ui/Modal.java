@@ -93,7 +93,7 @@ public class Modal extends Div implements IsClosable {
     private final static String TOGGLE = "toggle";
     private final static String HIDE = "hide";
     private final static String SHOW = "show";
-
+    private Element prevFocusElement = null;
     private final ModalContent content = new ModalContent();
     private final ModalDialog dialog = new ModalDialog();
     private ModalHeader header = new ModalHeader();
@@ -250,7 +250,7 @@ public class Modal extends Div implements IsClosable {
     public void toggle() {
         modal(getElement(), TOGGLE);
     }
-
+    
     public void show() {
         checkIsAttached();
         modal(getElement(), SHOW);
@@ -287,6 +287,7 @@ public class Modal extends Div implements IsClosable {
         if (hideOtherModals) {
             hideOtherModals();
         }
+        prevFocusElement = getActiveElement();
         fireEvent(new ModalShowEvent(this, evt));
     }
 
@@ -321,6 +322,9 @@ public class Modal extends Div implements IsClosable {
      */
     protected void onHidden(final Event evt) {
         fireEvent(new ModalHiddenEvent(this, evt));
+        if (prevFocusElement != null) {
+            prevFocusElement.focus();
+        }
     }
 
     private void checkIsAttached() {
@@ -358,6 +362,11 @@ public class Modal extends Div implements IsClosable {
     private native void hideOtherModals() /*-{
         $wnd.jQuery('.modal.in').modal('hide');
     }-*/;
+    
+    private native Element getActiveElement() /*-{
+        return $doc.activeElement;
+    }-*/;
+
 
     // Unbinds all the handlers
     private native void unbindAllHandlers(final Element e) /*-{
