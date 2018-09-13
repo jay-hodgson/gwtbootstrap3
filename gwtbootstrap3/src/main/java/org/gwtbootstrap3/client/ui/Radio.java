@@ -29,6 +29,7 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.LabelElement;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.i18n.shared.DirectionEstimator;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -208,7 +209,28 @@ public class Radio extends CheckBox {
         label.appendChild(labelElem);
 
         getElement().appendChild(label);
+        addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<Boolean> event) {
+                _uncheckAllInGroup(getName());
+                Boolean value = event.getValue();
+                if (value) {
+                    inputElem.setAttribute("checked", "");
+                }
+            }
+        });
     }
+    private final static native void _uncheckAllInGroup(String name) /*-{
+       try {
+            var radios = $doc.querySelectorAll("input[name='"+name+"']");
+            for( i = 0; i < radios.length; i++ ) {
+                radios[i].removeAttribute("checked");
+            }
+        }catch(err) {
+            console.error(err);
+        }
+    }-*/;
+
 
     protected Radio(Element elem, InputElement inputElement) {
         super(elem, inputElement);
