@@ -31,6 +31,8 @@ import com.google.gwt.dom.client.Style;
  * @author Joshua Godi
  */
 public enum IconType implements Type, Style.HasCssName {
+    SYN_SORT_ASC("syn-sort-asc"),
+    SYN_SORT_DESC("syn-sort-desc"),
     SYN_LOGO("syn-logo"),
     SYN_CRASH_HELMET("syn-crash-helmet"),
     SYN_TIMER("syn-timer"),
